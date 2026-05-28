@@ -1,0 +1,52 @@
+DO NOT CHANGE THE FORMAT -- DO NOT CREATE A NEW txt file
+
+=== Question 1 ===
+- Access modifiers are java's way of letting you control which classes can access your method. They allow you to keep some information hidden
+- They matter because some pieces of code shouldn't be displayed to everyone.
+- THe private modifier means that only classes within the specific package can see your code or that field.
+- To see what you made private you would have to create a setter and a getter
+- The public modifier means there is nothing private about that code and can be seen from anywhere as long as that class is called
+- The protected modifier is a hybrid of both so your code can be seen but you encrypted it
+- Making everything public is not always a good idea because for example when working with a bank account we don't want every class to have access to the balance or secret pin
+
+
+=== Question 2 ===
+- A constructor is a birth certificate for your class, it gives a glimpse of what your class will be doing.
+- A method is the traits of your class, it shows you what your class can do
+- The difference between a constructor and a method is that a constructor is named after the class whereas the method is named after what it is built for.
+- A constructor gives you a glimpse of what to expect throughout the class a method is specific to a particular action.
+- A constructor is like an adjective and a method is a verb
+- A constructor returns nothing and a method returns whatever you were asking it to look for/ find or calculate
+- An example is an Animal class : public class Animal {
+                                      String name;
+                                      int age;
+                                      public void Animal(String name, int age){
+                                          this.name = name;
+                                          this.age = age;
+                                         // contructor
+                                      }
+                                      public String kind(){
+                                          return "THIS IS A: " + name; // method
+                                      }
+                                  }
+
+
+
+=== Question 3 ===
+- Loops are still a way to repeat a block of code until we meet a certain condition
+- Like a for loop in python we are still looking for something based on something.
+- When we are loping through a collection(List, Array) in jave we use ":" instead of the "in" keyword
+- so your for loop will be: for (String fruit: fruits){ what I would like to do }.
+- When looping in java you must always be type specific and if what you are looping through has a mixture of data you can use the data type "Object"
+- And then when we are looping through a range we use: for (int i = 0; i < 10; i++) {What you would like to do}.
+- This "for (int i = 0; i < 10; i++)" means as long as the integer i is less than 10 keep looping but increase i by 1 after every loop.
+- instead of using ":" to write your code block we use "{}" you have to close the fridge after you open it
+- The while loop is better in java because it's straightforward so you say while (x > 3){ your code} this code will automatically break without you telling it. When the loop is done it will stop.
+
+=== Question 4 ===
+- A class is like a variable but instead of storing one specific data type it stores a whole block of code.
+- For example a Bank class would store all your banking information and you can call and reference the bank class whenever you need to use it.
+- The Bank class is made up of different methods: Methods are blocks of code that perform one specific task for example the withdraw method would only be dealing with withdrawing but because its in a class it will be able tyo update the balance so that when you deposit or check the balance you get an updated amount without manually writing another calulation for it.
+- Basically classes allow you to group code that works together for easier use.
+- This is called OOP(Object orientated programming): OOP is like when we used to play with building blocks to build objects.
+- We group the blocks we will use in a class and they become the methods that help that class perform its expected task
