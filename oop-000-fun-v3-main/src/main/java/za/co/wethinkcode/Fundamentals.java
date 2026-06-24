@@ -37,18 +37,15 @@ public class Fundamentals {
      * No starter code is provided — write the full method body.
      */
     public static boolean isPalindrome(String s) {
-//        if (s == null || s.equals("")) {
-//            return false;
-//        }
-//        else if (s.equals("     ")){
-//            return false;
-//        }
-//            String cleaned = s.replaceAll("\\s+", "").toLowerCase();
-//
-//            String reversed = new StringBuilder(cleaned).reverse().toString();
-//            System.out.println(s);
-//            return cleaned.equals(reversed);
-        return false;
+        if (s == null || s.isEmpty()) {
+            return false;
+        }
+        String cleaned = s.replaceAll("\\s+", "").toLowerCase();
+        if (cleaned.isEmpty()) {
+            return false;
+        }
+        String reversed = new StringBuilder(cleaned).reverse().toString();
+        return cleaned.equals(reversed);
     }
 
     // ============================
@@ -89,24 +86,15 @@ public class Fundamentals {
      * No starter code is provided — write the full method body.
      */
     public static int wordCount(String s) {
-//        int count = 0;
-//        if (s == null || s.equals("")) {
-//            return 0;
-//        }
-//        else if (s.equals("     ")){
-//            return 0;
-//        }
-//        String s_clean = s.trim();
-//        String[] s_list = s_clean.split("\\s+");
-//        for(String s_count: s_list){
-//            count++;
-//
-//        }
-//        return count;
-        return 0;
-//    }
-
-
+        if (s == null || s.isEmpty()) {
+            return 0;
+        }
+        String trimmed = s.trim();
+        if (trimmed.isEmpty()) {
+            return 0;
+        }
+        String[] words = trimmed.split("\\s+");
+        return words.length;
     }
 }
 

@@ -1,52 +1,106 @@
 DO NOT CHANGE THE FORMAT -- DO NOT CREATE A NEW txt file
 
 === Question 1 ===
-- Access modifiers are java's way of letting you control which classes can access your method. They allow you to keep some information hidden
-- They matter because some pieces of code shouldn't be displayed to everyone.
-- THe private modifier means that only classes within the specific package can see your code or that field.
-- To see what you made private you would have to create a setter and a getter
-- The public modifier means there is nothing private about that code and can be seen from anywhere as long as that class is called
-- The protected modifier is a hybrid of both so your code can be seen but you encrypted it
-- Making everything public is not always a good idea because for example when working with a bank account we don't want every class to have access to the balance or secret pin
+Access modifiers are keywords in Java that control which other classes or parts of your code are allowed to see and use a field, method, or class. They matter because not everything in your code should be freely available to everyone — just like you would not give a stranger your bank PIN, some data in your programme needs to be protected.
+
+The private modifier means that only code inside that same class can access that field or method. You would use private for sensitive data like a password or a bank balance, because you do not want any other class to read or change it directly. The public modifier means that any class anywhere in your project can access it. You would use public for things you intentionally want to share, like a method that other classes need to call. The protected modifier sits in between — it allows access from within the same class, any class in the same package, and any subclass that extends it. You would use protected when you are building a parent class and want child classes to be able to use something, but you still do not want the whole world accessing it.
+
+Making everything public is a problem because it removes all protection from your code. Imagine you have a BankAccount class and you make the balance field public. Any other class could write bankAccount.balance = 1000000 and change it without going through your proper deposit or withdraw methods. This breaks the idea of keeping data safe inside the class. A concrete example would be:
+
+public class BankAccount {
+    private double balance;
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+Here balance is private, so nobody outside the class can change it directly. They have to use the deposit method, which checks that the amount is valid first. If balance were public, anyone could skip that check and set it to whatever they wanted.
 
 
 === Question 2 ===
-- A constructor is a birth certificate for your class, it gives a glimpse of what your class will be doing.
-- A method is the traits of your class, it shows you what your class can do
-- The difference between a constructor and a method is that a constructor is named after the class whereas the method is named after what it is built for.
-- A constructor gives you a glimpse of what to expect throughout the class a method is specific to a particular action.
-- A constructor is like an adjective and a method is a verb
-- A constructor returns nothing and a method returns whatever you were asking it to look for/ find or calculate
-- An example is an Animal class : public class Animal {
-                                      String name;
-                                      int age;
-                                      public void Animal(String name, int age){
-                                          this.name = name;
-                                          this.age = age;
-                                         // contructor
-                                      }
-                                      public String kind(){
-                                          return "THIS IS A: " + name; // method
-                                      }
-                                  }
+A constructor is a special block of code inside a class that runs automatically when you create a new object from that class. Its job is to set up the object right away — giving its fields their starting values so the object is ready to use from the moment it is created. The constructor is always named exactly the same as the class itself, and it has no return type at all, not even void.
 
+A method is a block of code inside a class that performs a specific task. Methods are given names that describe what they do, they have a return type (or void if they return nothing), and they only run when you explicitly call them. You can call a method as many times as you like on an object.
+
+The key differences are: a constructor has the exact same name as the class while a method has its own descriptive name; a constructor has no return type at all while a method must declare one (even if it is void); and a constructor is called automatically when you use the new keyword to create an object, while a method is called manually whenever you need it. Here is a simple Java example that shows both in the same class:
+
+public class Animal {
+    String name;
+    int age;
+
+    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String describe() {
+        return name + " is " + age + " years old.";
+    }
+}
+
+In this example, Animal(String name, int age) is the constructor — it runs the moment you write new Animal("Dog", 3). The describe() method is separate and only runs when you call it like myAnimal.describe().
 
 
 === Question 3 ===
-- Loops are still a way to repeat a block of code until we meet a certain condition
-- Like a for loop in python we are still looking for something based on something.
-- When we are loping through a collection(List, Array) in jave we use ":" instead of the "in" keyword
-- so your for loop will be: for (String fruit: fruits){ what I would like to do }.
-- When looping in java you must always be type specific and if what you are looping through has a mixture of data you can use the data type "Object"
-- And then when we are looping through a range we use: for (int i = 0; i < 10; i++) {What you would like to do}.
-- This "for (int i = 0; i < 10; i++)" means as long as the integer i is less than 10 keep looping but increase i by 1 after every loop.
-- instead of using ":" to write your code block we use "{}" you have to close the fridge after you open it
-- The while loop is better in java because it's straightforward so you say while (x > 3){ your code} this code will automatically break without you telling it. When the loop is done it will stop.
+Loops in Java let you repeat a block of code multiple times, just like in Python, but the syntax is different and Java requires you to be specific about types. The standard for loop has three parts separated by semicolons inside the parentheses: the first part is the initialisation where you create and set your counter variable, like int i = 0; the second part is the condition that is checked before every loop — if it is true the loop runs, if it is false it stops, like i < 10; and the third part is the update that happens after every loop, like i++ which adds 1 to i each time. A full example looks like this:
+
+for (int i = 0; i < 10; i++) {
+    System.out.println(i);
+}
+
+The enhanced for loop, also called the for-each loop, is used when you want to go through every element in an array or a collection like a List. Instead of the "in" keyword that Python uses, Java uses a colon. You also have to declare the type of the elements. An example looks like this:
+
+String[] fruits = {"apple", "banana", "mango"};
+for (String fruit : fruits) {
+    System.out.println(fruit);
+}
+
+You would choose the for-each loop when you just need each element and do not care about its position. You would choose the standard for loop when you need the index, for example if you want to know which position you are at or if you want to loop backwards.
+
+The while loop is different from both because it only has a condition — it has no built-in counter or update step. You use it when you do not know in advance how many times you need to loop, and you just want to keep going as long as something is true. An example looks like this:
+
+int x = 0;
+while (x < 5) {
+    System.out.println(x);
+    x++;
+}
+
+The loop checks the condition before each run and stops as soon as it becomes false, so you have to remember to update x yourself inside the loop, otherwise it will run forever.
+
 
 === Question 4 ===
-- A class is like a variable but instead of storing one specific data type it stores a whole block of code.
-- For example a Bank class would store all your banking information and you can call and reference the bank class whenever you need to use it.
-- The Bank class is made up of different methods: Methods are blocks of code that perform one specific task for example the withdraw method would only be dealing with withdrawing but because its in a class it will be able tyo update the balance so that when you deposit or check the balance you get an updated amount without manually writing another calulation for it.
-- Basically classes allow you to group code that works together for easier use.
-- This is called OOP(Object orientated programming): OOP is like when we used to play with building blocks to build objects.
-- We group the blocks we will use in a class and they become the methods that help that class perform its expected task
+A class in Java is like a blueprint or a template. It describes what something should look like and what it can do, but it is not the actual thing itself. For example, a Dog class would describe that every dog has a name and an age, and that every dog can bark — but the class itself is not a real dog. An object is the actual thing that gets created from that blueprint. When you write new Dog("Rex", 3) in Java, you are creating a real Dog object based on the class.
+
+The reason grouping data and behaviour together in a class is better than having separate variables and functions scattered through a script is that everything that belongs to a concept stays in one place. If you have a Dog class, the name and age live inside it, and the bark method lives inside it too. When you need to change something about how dogs work, you only have to look in one place. If those things were scattered as loose variables and functions across your code, it would become very confusing and hard to manage, especially as the programme grows.
+
+Here is a simple Java example that shows a class and how to create objects from it:
+
+public class Dog {
+    String name;
+    int age;
+
+    public Dog(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void bark() {
+        System.out.println(name + " says: Woof!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog myDog = new Dog("Rex", 3);
+        myDog.bark();
+    }
+}
+
+Here Dog is the class and myDog is the object. The class defines the structure and the behaviour, and the object is the actual instance you work with in your programme.
